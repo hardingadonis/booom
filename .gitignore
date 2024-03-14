@@ -50,3 +50,16 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Code Blocks
+*.depend
+*.layout
+*.cbp
+*.depend.bak
+*.layout.bak
+*.mtb
+*.autosave
+*.aps
+*.gch
+bin/
+obj/
