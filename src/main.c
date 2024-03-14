@@ -10,6 +10,8 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
+	load_data_game();
+
 	run_game();
 
 	terminate_game();

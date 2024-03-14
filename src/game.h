@@ -3,6 +3,8 @@
 
 int initialize_game();
 
+void load_data_game();
+
 void run_game();
 
 void terminate_game();

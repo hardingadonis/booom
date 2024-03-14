@@ -1,5 +1,6 @@
 #include "game.h"
 #include "common.h"
+#include "resource.h"
 
 int is_game_running = 1;
 int last_frame_time = 0;
@@ -32,10 +33,34 @@ int initialize_game()
 		return 1;
 	}
 
+	SDL_SetRenderDrawColor(g_renderer, 0, 0, 0, 255);
+
 	is_game_running = 1;
 	last_frame_time = 0;
 
 	return 0;
+}
+
+void load_data_game()
+{
+	g_tx_player				= load_texture_from_file(RES_TX_PLAYER);
+	g_tx_player_gun			= load_texture_from_file(RES_TX_PLAYER_GUN);
+	g_tx_player_bullet		= load_texture_from_file(RES_TX_PLAYER_BULLET);
+
+	g_tx_map_background		= load_texture_from_file(RES_TX_MAP_BACKGROUND);
+	g_tx_map_tower			= load_texture_from_file(RES_TX_MAP_TOWER);
+
+	g_tx_mt_goblin_attack	= load_texture_from_file(RES_TX_MT_GOBLIN_ATTACK);
+	g_tx_mt_goblin_death	= load_texture_from_file(RES_TX_MT_GOBLIN_DEATH);
+	g_tx_mt_goblin_walk		= load_texture_from_file(RES_TX_MT_GOBLIN_WALK);
+
+	g_tx_mt_mushroom_attack	= load_texture_from_file(RES_TX_MT_MUSHROOM_ATTACK);
+	g_tx_mt_mushroom_death	= load_texture_from_file(RES_TX_MT_MUSHROOM_DEATH);
+	g_tx_mt_mushroom_walk	= load_texture_from_file(RES_TX_MT_MUSHROOM_WALK);
+
+	g_tx_mt_skeleton_attack	= load_texture_from_file(RES_TX_MT_SKELETON_ATTACK);
+	g_tx_mt_skeleton_death	= load_texture_from_file(RES_TX_MT_SKELETON_DEATH);
+	g_tx_mt_skeleton_walk	= load_texture_from_file(RES_TX_MT_SKELETON_WALK);
 }
 
 void handle_event()
@@ -65,10 +90,9 @@ void update()
 
 void render()
 {
-	SDL_SetRenderDrawColor(g_renderer, 0, 0, 0, 255);
 	SDL_RenderClear(g_renderer);
 
-
+	SDL_RenderCopy(g_renderer, g_tx_map_background, NULL, NULL);
 
 	SDL_RenderPresent(g_renderer);
 }
