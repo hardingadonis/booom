@@ -63,3 +63,18 @@ dkms.conf
 *.gch
 bin/
 obj/
+
+# Visual Studio
+.vs/
+out/
+x64/
+x86/
+dino-gun/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.cache
+*.sln
+*.vcxproj
+*.vcxproj.filters

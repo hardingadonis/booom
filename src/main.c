@@ -1,8 +1,18 @@
 #include "config.h"
+#include "game.h"
 
 int main(int argc, char* argv[])
 {
-    SDL_Init(SDL_INIT_EVERYTHING);
+	if (initialize_game() != 0)
+	{
+		printf("initialize SDL2 failed!");
+
+		return 1;
+	}
+
+	run_game();
+
+	terminate_game();
 
 	return 0;
 }
