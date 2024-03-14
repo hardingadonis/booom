@@ -1,6 +1,6 @@
 #include "resource.h"
 
-//SDL_Renderer* g_renderer;
+extern SDL_Renderer* g_renderer;
 
 SDL_Texture* load_texture_from_file(const char* path)
 {

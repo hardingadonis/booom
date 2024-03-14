@@ -2,6 +2,10 @@
 #include "common.h"
 #include "resource.h"
 
+HandleEventCallback		handle_event_callback;
+UpdateCallback			update_callback;
+RenderCallback			render_callback;
+
 int is_game_running = 1;
 int last_frame_time = 0;
 
@@ -63,49 +67,42 @@ void load_data_game()
 	g_tx_mt_skeleton_walk	= load_texture_from_file(RES_TX_MT_SKELETON_WALK);
 }
 
-void handle_event()
+void set_scene(HandleEventCallback h, UpdateCallback u, RenderCallback r)
 {
-	SDL_Event e;
-	
-	while (SDL_PollEvent(&e) != 0)
-	{		
-		switch (e.type)
-		{
-		case SDL_QUIT:
-		{
-			is_game_running = 0;
-			break;
-		}
-		}
-	}
-}
-
-void update()
-{
-	float delta = (SDL_GetTicks() - last_frame_time) / 1000.f;
-	last_frame_time = SDL_GetTicks();
-
-
-}
-
-void render()
-{
-	SDL_RenderClear(g_renderer);
-
-	SDL_RenderCopy(g_renderer, g_tx_map_background, NULL, NULL);
-
-	SDL_RenderPresent(g_renderer);
+	handle_event_callback = h;
+	update_callback = u;
+	render_callback = r;
 }
 
 void run_game()
 {
 	while (is_game_running)
 	{
-		handle_event();
+		// Handle event
+		SDL_Event e;
+		while (SDL_PollEvent(&e) != 0)
+		{
+			switch (e.type)
+			{
+			case SDL_QUIT:
+			{
+				is_game_running = 0;
+				break;
+			}
+			}
 
-		update();
+			handle_event_callback(&e);
+		}
 
-		render();
+		// Update
+		float delta = (SDL_GetTicks() - last_frame_time) / 1000.f;
+		last_frame_time = SDL_GetTicks();
+		update_callback(delta);
+
+		// Render
+		SDL_RenderClear(g_renderer);
+		render_callback(g_renderer);
+		SDL_RenderPresent(g_renderer);
 	}
 }
 
