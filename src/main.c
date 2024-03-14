@@ -1,8 +1,8 @@
-#include <stdio.h>
+#include "config.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-    printf("Dino Gun");
+    SDL_Init(SDL_INIT_EVERYTHING);
 
-    return 0;
+	return 0;
 }
