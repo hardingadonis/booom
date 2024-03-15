@@ -5,7 +5,7 @@
 class Resource
 {
 public:
-	static TTF_Font* FONT_24;
+	static TTF_Font*	FONT_24;
 
 	static SDL_Texture* TX_PLAYER;
 	static SDL_Texture* TX_PLAYER_GUN;

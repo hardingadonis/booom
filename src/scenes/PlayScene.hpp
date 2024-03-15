@@ -2,11 +2,15 @@
 
 #include <Config.hpp>
 #include <scenes/BaseScene.hpp>
+#include <objects/Tower.hpp>
 
 class PlayScene final : public BaseScene
 {
+private:
+	Tower*			m_tower;
+
 public:
-	PlayScene() = default;
+	PlayScene();
 	~PlayScene() = default;
 
 	void HandleEvent(SDL_Event) override;
