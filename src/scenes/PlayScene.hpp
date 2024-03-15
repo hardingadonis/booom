@@ -3,11 +3,13 @@
 #include <Config.hpp>
 #include <scenes/BaseScene.hpp>
 #include <objects/Tower.hpp>
+#include <objects/Player.hpp>
 
 class PlayScene final : public BaseScene
 {
 private:
 	Tower*			m_tower;
+	Player*			m_player;
 
 public:
 	PlayScene();
