@@ -8,7 +8,7 @@
 #include <iostream>
 
 // Define constants
-#define WINDOW_WITDH					1200
+#define WINDOW_WIDTH					1200
 #define WINDOW_HEIGHT					680
 #define WINDOW_TITLE					"Dino Gun"
 

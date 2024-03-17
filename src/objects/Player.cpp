@@ -60,9 +60,9 @@ void Player::Update(float delta)
 		this->SetOrigin({ xOffset, this->m_origin->y });
 	}
 
-	if (this->m_origin->x > WINDOW_WITDH - xOffset)
+	if (this->m_origin->x > WINDOW_WIDTH - xOffset)
 	{
-		this->SetOrigin({ WINDOW_WITDH - xOffset, this->m_origin->y });
+		this->SetOrigin({ WINDOW_WIDTH - xOffset, this->m_origin->y });
 	}
 
 	if (this->m_origin->y < yOffset)

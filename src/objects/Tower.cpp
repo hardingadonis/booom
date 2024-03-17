@@ -12,7 +12,7 @@ Tower::Tower() :
 
 	this->m_rectDst->w = 150;
 	this->m_rectDst->h = 210;
-	this->m_rectDst->x = (WINDOW_WITDH - this->m_rectDst->w) / 2;
+	this->m_rectDst->x = (WINDOW_WIDTH - this->m_rectDst->w) / 2;
 	this->m_rectDst->y = (WINDOW_HEIGHT - this->m_rectDst->h) / 2;
 }
 
