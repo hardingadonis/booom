@@ -4,7 +4,7 @@
 #include <components/HP.hpp>
 #include <objects/AnimatedObject.hpp>
 
-class Tower final : public AnimatedObject, HP
+class Tower final : public AnimatedObject, public HP
 {
 private:
 

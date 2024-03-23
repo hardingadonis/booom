@@ -1,5 +1,13 @@
 #include <objects/AnimatedObject.hpp>
 
+AnimatedObject::AnimatedObject() :
+	m_maxFrame(1),
+	m_currentFrame(1),
+	m_timePerFrame(1.f),
+	m_elapsedTime(0.f)
+{
+}
+
 AnimatedObject::AnimatedObject(int maxFrame, float timePerFrame) :
 	m_maxFrame(maxFrame),
 	m_currentFrame(1),
@@ -28,4 +36,19 @@ void AnimatedObject::UpdateAnimation(float delta)
 			this->m_rectSrc->x = this->m_rectSrc->w * (this->m_currentFrame - 1);
 		}
 	}
+}
+
+void AnimatedObject::SetMaxFrame(int maxFrame)
+{
+	this->m_maxFrame = maxFrame;
+}
+
+void AnimatedObject::SetCurrentFrame(int currentFrame)
+{
+	this->m_currentFrame = currentFrame;
+}
+
+void AnimatedObject::SetTimePerFrame(float timePerFrame)
+{
+	this->m_timePerFrame = timePerFrame;
 }

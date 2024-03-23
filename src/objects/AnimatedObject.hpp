@@ -12,8 +12,12 @@ private:
 	float		m_elapsedTime;
 
 public:
-	AnimatedObject() = default;
+	AnimatedObject();
 	AnimatedObject(int, float);
 
 	void UpdateAnimation(float);
+
+	void SetMaxFrame(int);
+	void SetCurrentFrame(int);
+	void SetTimePerFrame(float);
 };
