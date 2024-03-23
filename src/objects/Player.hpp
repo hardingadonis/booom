@@ -5,7 +5,7 @@
 #include <objects/AnimatedObject.hpp>
 #include <objects/Gun.hpp>
 
-class Player final : public AnimatedObject, Damage
+class Player final : public AnimatedObject, public Damage
 {
 private:
 	int				m_speed;
