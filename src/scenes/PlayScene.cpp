@@ -1,11 +1,11 @@
 #include <Config.hpp>
 #include <scenes/PlayScene.hpp>
 
-PlayScene::PlayScene()
+PlayScene::PlayScene() :
+	m_elapsedTime(0.f)
 {
 	this->m_tower = new Tower();
 	this->m_player = new Player();
-	this->m_threat = Threat::Generate();
 }
 
 void PlayScene::HandleEvent(SDL_Event e)
@@ -14,14 +14,30 @@ void PlayScene::HandleEvent(SDL_Event e)
 
 void PlayScene::Update(float delta)
 {
+	this->m_elapsedTime += delta;
+
+	if (this->m_elapsedTime > 1.2f)
+	{
+		this->m_threats.push_back(Threat::Generate());
+
+		this->m_elapsedTime = 0.f;
+	}
+
 	this->m_tower->Update(delta);
 	this->m_player->Update(delta);
-	this->m_threat->Update(delta);
+
+	for (auto threat : this->m_threats)
+	{
+		threat->Update(delta);
+	}
 }
 
 void PlayScene::Render(SDL_Renderer* renderer)
 {
-	this->m_threat->Render(renderer);
+	for (auto threat : this->m_threats)
+	{
+		threat->Render(renderer);
+	}
 
 	if (this->m_tower->GetOrigin().y + 100 < this->m_player->GetOrigin().y)
 	{

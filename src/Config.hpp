@@ -6,6 +6,7 @@
 #include <SDL2/SDL_ttf.h>
 
 #include <iostream>
+#include <vector>
 
 // Define constants
 #define WINDOW_WIDTH					1200
