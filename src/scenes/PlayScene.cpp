@@ -10,6 +10,13 @@ PlayScene::PlayScene() :
 
 void PlayScene::HandleEvent(SDL_Event e)
 {
+	if (e.type == SDL_MOUSEBUTTONDOWN)
+	{
+		if (e.button.button == SDL_BUTTON_LEFT)
+		{
+			this->m_bullets.push_back(new Bullet(this->m_player->GetGunAngle(), this->m_player->GetOrigin()));
+		}
+	}
 }
 
 void PlayScene::Update(float delta)
@@ -30,6 +37,11 @@ void PlayScene::Update(float delta)
 	{
 		threat->Update(delta);
 	}
+
+	for (auto bullet : this->m_bullets)
+	{
+		bullet->Update(delta);
+	}
 }
 
 void PlayScene::Render(SDL_Renderer* renderer)
@@ -37,6 +49,10 @@ void PlayScene::Render(SDL_Renderer* renderer)
 	for (auto threat : this->m_threats)
 	{
 		threat->Render(renderer);
+	}
+	for (auto bullet : this->m_bullets)
+	{
+		bullet->Render(renderer);
 	}
 
 	if (this->m_tower->GetOrigin().y + 100 < this->m_player->GetOrigin().y)

@@ -84,3 +84,8 @@ void Player::Render(SDL_Renderer* renderer)
 
 	this->m_gun->Render(renderer);
 }
+
+float Player::GetGunAngle() const
+{
+	return this->m_gun->GetAngle();
+}

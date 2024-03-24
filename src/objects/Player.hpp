@@ -16,4 +16,6 @@ public:
 
 	void Update(float) override;
 	void Render(SDL_Renderer*) override;
+
+	float GetGunAngle() const;
 };
