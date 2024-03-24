@@ -87,7 +87,7 @@ void Threat::Update(float delta)
 	auto o = this->GetOrigin();
 	this->m_totalHP.x = this->m_currentHP.x =  o.x - 15;
 	this->m_totalHP.y = this->m_currentHP.y = o.y + 35;
-	this->m_currentHP.w = (float)this->GetCurrentHP() / (float)this->GetMaxHP() * this->m_totalHP.w;
+	this->m_currentHP.w = (int)((float)this->GetCurrentHP() / (float)this->GetMaxHP() * this->m_totalHP.w);
 
 	if (this->m_state == ThreatState::WALK)
 	{
@@ -116,8 +116,11 @@ void Threat::Render(SDL_Renderer* renderer)
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderFillRect(renderer, &this->m_totalHP);
 
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-	SDL_RenderFillRect(renderer, &this->m_currentHP);
+	if (this->GetCurrentHP() > 0)
+	{
+		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+		SDL_RenderFillRect(renderer, &this->m_currentHP);
+	}
 }
 
 Threat* Threat::Generate()

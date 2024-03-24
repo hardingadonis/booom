@@ -25,7 +25,7 @@ void Tower::Update(float delta)
 {
 	this->UpdateAnimation(delta);
 
-	this->m_currentHP.w = (float)this->GetCurrentHP() / (float)this->GetMaxHP() * this->m_totalHP.w;
+	this->m_currentHP.w = (int)((float)this->GetCurrentHP() / (float)this->GetMaxHP() * this->m_totalHP.w);
 }
 
 void Tower::Render(SDL_Renderer* renderer)
@@ -35,6 +35,9 @@ void Tower::Render(SDL_Renderer* renderer)
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderFillRect(renderer, &this->m_totalHP);
 
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-	SDL_RenderFillRect(renderer, &this->m_currentHP);
+	if (this->GetCurrentHP() > 0)
+	{
+		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+		SDL_RenderFillRect(renderer, &this->m_currentHP);
+	}
 }
