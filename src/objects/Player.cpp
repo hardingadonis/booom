@@ -4,7 +4,8 @@
 
 Player::Player() :
 	AnimatedObject(6, 0.1f),
-	m_speed(150)
+	m_speed(150),
+	m_isShotable(true)
 {
 	this->m_texture = Resource::TX_PLAYER;
 	this->m_rectSrc->w = 72;
@@ -20,6 +21,13 @@ Player::Player() :
 
 void Player::Update(float delta)
 {
+	this->m_elapsedTime += delta;
+
+	if (this->m_elapsedTime > 0.3f)
+	{
+		this->m_isShotable = true;
+	}
+
 	this->UpdateAnimation(delta);
 
 	const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
@@ -85,7 +93,15 @@ void Player::Render(SDL_Renderer* renderer)
 	this->m_gun->Render(renderer);
 }
 
-float Player::GetGunAngle() const
+bool Player::IsShotable() const
 {
-	return this->m_gun->GetAngle();
+	return this->m_isShotable;
+}
+
+Bullet* Player::Shot()
+{
+	this->m_isShotable = false;
+	this->m_elapsedTime = 0.f;
+
+	return new Bullet(this->m_gun->GetAngle(), this->GetOrigin());
 }

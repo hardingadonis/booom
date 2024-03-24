@@ -12,9 +12,9 @@ void PlayScene::HandleEvent(SDL_Event e)
 {
 	if (e.type == SDL_MOUSEBUTTONDOWN)
 	{
-		if (e.button.button == SDL_BUTTON_LEFT)
+		if (e.button.button == SDL_BUTTON_LEFT && this->m_player->IsShotable())
 		{
-			this->m_bullets.push_back(new Bullet(this->m_player->GetGunAngle(), this->m_player->GetOrigin()));
+			this->m_bullets.push_back(this->m_player->Shot());
 		}
 	}
 }
