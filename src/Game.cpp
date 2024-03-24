@@ -52,8 +52,6 @@ void Game::Initialize()
 		exit(EXIT_FAILURE);
 	}
 
-	SDL_SetRenderDrawColor(this->m_renderer, 0, 0, 0, 255);
-
 	this->m_isRunning = true;
 
 	Resource::LoadAllData(this->m_renderer);
@@ -88,6 +86,7 @@ void Game::Run()
 		last_frame_time = SDL_GetTicks();
 
 		// Render
+		SDL_SetRenderDrawColor(this->m_renderer, 0, 0, 0, 255);
 		SDL_RenderClear(this->m_renderer);
 
 		SDL_RenderCopy(this->m_renderer, Resource::TX_MAP_BACKGROUND, nullptr, nullptr);

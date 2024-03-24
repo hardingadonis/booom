@@ -14,7 +14,9 @@ Threat::Threat(
 	m_attackTex(attackTex),
 	m_deathTex(deathTex),
 	m_walkTex(walkTex),
-	m_speed(speed)
+	m_speed(speed),
+	m_totalHP({0, 0, 30, 3}),
+	m_currentHP({ 0, 0, 30, 3 })
 {
 	this->SetCurrentFrame(1);
 	this->SetMaxFrame(8);
@@ -82,10 +84,13 @@ void Threat::Update(float delta)
 	this->SetFlipH(this->GetOrigin().x > WINDOW_WIDTH / 2);
 	this->UpdateAnimation(delta);
 
+	auto o = this->GetOrigin();
+	this->m_totalHP.x = this->m_currentHP.x =  o.x - 15;
+	this->m_totalHP.y = this->m_currentHP.y = o.y + 35;
+	this->m_currentHP.w = (float)this->GetCurrentHP() / (float)this->GetMaxHP() * this->m_totalHP.w;
+
 	if (this->m_state == ThreatState::WALK)
 	{
-		auto o = this->GetOrigin();
-
 		Vector2f vec = Vector2f((float)(WINDOW_WIDTH / 2 - o.x), (float)(WINDOW_HEIGHT / 2 - o.y));
 
 		if (vec.Magnitude() > 80.f)
@@ -102,6 +107,17 @@ void Threat::Update(float delta)
 	{
 		this->SetState(ThreatState::DEATH);
 	}
+}
+
+void Threat::Render(SDL_Renderer* renderer)
+{
+	BaseObject::Render(renderer);
+
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	SDL_RenderFillRect(renderer, &this->m_totalHP);
+
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+	SDL_RenderFillRect(renderer, &this->m_currentHP);
 }
 
 Threat* Threat::Generate()

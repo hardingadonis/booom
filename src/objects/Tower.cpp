@@ -14,9 +14,27 @@ Tower::Tower() :
 	this->m_rectDst->h = 210;
 	this->m_rectDst->x = (WINDOW_WIDTH - this->m_rectDst->w) / 2;
 	this->m_rectDst->y = (WINDOW_HEIGHT - this->m_rectDst->h) / 2;
+
+	this->m_totalHP.w = this->m_currentHP.w = WINDOW_WIDTH / 2;
+	this->m_totalHP.h = this->m_currentHP.h = 5;
+	this->m_totalHP.x = this->m_currentHP.x = (WINDOW_WIDTH - this->m_totalHP.w) / 2;
+	this->m_totalHP.y = this->m_currentHP.y = 10;
 }
 
 void Tower::Update(float delta)
 {
 	this->UpdateAnimation(delta);
+
+	this->m_currentHP.w = (float)this->GetCurrentHP() / (float)this->GetMaxHP() * this->m_totalHP.w;
+}
+
+void Tower::Render(SDL_Renderer* renderer)
+{
+	BaseObject::Render(renderer);
+
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	SDL_RenderFillRect(renderer, &this->m_totalHP);
+
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+	SDL_RenderFillRect(renderer, &this->m_currentHP);
 }

@@ -21,6 +21,9 @@ protected:
 	SDL_Texture* m_deathTex;
 	SDL_Texture* m_walkTex;
 
+	SDL_Rect m_totalHP;
+	SDL_Rect m_currentHP;
+
 public:
 	Threat(SDL_Texture*, SDL_Texture*, SDL_Texture*, int, int, int);
 
@@ -29,6 +32,7 @@ public:
 	ThreatState GetState() const;
 
 	void Update(float) override;
+	void Render(SDL_Renderer*) override;
 
 	static Threat* Generate();
 };
