@@ -4,7 +4,6 @@
 
 Player::Player() :
 	AnimatedObject(6, 0.1f),
-	Damage(10),
 	m_speed(150)
 {
 	this->m_texture = Resource::TX_PLAYER;

@@ -1,11 +1,10 @@
 #pragma once
 
 #include <Config.hpp>
-#include <components/Damage.hpp>
 #include <objects/AnimatedObject.hpp>
 #include <objects/Gun.hpp>
 
-class Player final : public AnimatedObject, public Damage
+class Player final : public AnimatedObject
 {
 private:
 	int				m_speed;
