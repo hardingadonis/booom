@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 // Define constants
 #define WINDOW_WIDTH					1200

@@ -9,4 +9,6 @@ private:
 
 public:
 	Goblin();
+
+	int Score() override;
 };

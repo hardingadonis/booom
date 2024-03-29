@@ -8,6 +8,7 @@ class Bullet : public BaseObject, public Damage
 {
 private:
 	int m_speed;
+	float m_elapsedTime;
 
 public:
 	Bullet(float, SDL_Point);

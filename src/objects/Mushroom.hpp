@@ -9,4 +9,6 @@ private:
 
 public:
 	Mushroom();
+
+	int Score() override;
 };

@@ -3,7 +3,8 @@
 
 Bullet::Bullet(float angle, SDL_Point origin) :
 	Damage(25),
-	m_speed(800)
+	m_speed(800),
+	m_elapsedTime(0.f)
 {
 	this->m_texture = Resource::TX_PLAYER_BULLET;
 
@@ -19,6 +20,12 @@ Bullet::Bullet(float angle, SDL_Point origin) :
 
 void Bullet::Update(float delta)
 {
+	this->m_elapsedTime += delta;
+	if (this->m_elapsedTime >= 0.5f)
+	{
+		this->m_isAlive = false;
+	}
+
 	Vector2f vec;
 	vec.x = (float)std::cos((this->m_angle - 90.f) * M_PI / 180);
 	vec.y = (float)std::sin((this->m_angle - 90.f) * M_PI / 180);

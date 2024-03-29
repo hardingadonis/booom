@@ -1,11 +1,17 @@
 #include <Config.hpp>
 #include <scenes/PlayScene.hpp>
+#include <Resource.hpp>
 
 PlayScene::PlayScene() :
-	m_elapsedTime(0.f)
+	m_elapsedTime(0.f),
+	m_score(0)
 {
 	this->m_tower = new Tower();
 	this->m_player = new Player();
+	this->m_scoreText = new Text(Resource::FONT_24);
+	this->m_scoreText->SetPosition({ 50, 5 });
+	this->m_theatsText = new Text(Resource::FONT_24);
+	this->m_theatsText->SetPosition({ 1000, 5 });
 }
 
 void PlayScene::HandleEvent(SDL_Event e)
@@ -65,6 +71,8 @@ void PlayScene::Update(float delta)
 		if (!this->m_threats[i]->IsAlive())
 		{
 			this->m_threats.erase(this->m_threats.begin() + i);
+
+			this->m_score += this->m_threats[i]->Score();
 		}
 		else
 		{
@@ -106,4 +114,7 @@ void PlayScene::Render(SDL_Renderer* renderer)
 		this->m_player->Render(renderer);
 		this->m_tower->Render(renderer);
 	}
+
+	this->m_scoreText->RenderText(renderer, "Score: " + std::to_string(this->m_score));
+	this->m_theatsText->RenderText(renderer, "Threats: " + std::to_string(this->m_threats.size()));
 }

@@ -2,6 +2,7 @@
 
 #include <Config.hpp>
 #include <scenes/BaseScene.hpp>
+#include <components/Text.hpp>
 #include <objects/Tower.hpp>
 #include <objects/Player.hpp>
 #include <objects/Bullet.hpp>
@@ -15,6 +16,9 @@ private:
 	std::vector<Threat*>	m_threats;
 	std::vector<Bullet*>	m_bullets;
 	float					m_elapsedTime;
+	int						m_score;
+	Text*					m_scoreText;
+	Text*					m_theatsText;
 
 public:
 	PlayScene();

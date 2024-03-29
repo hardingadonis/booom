@@ -40,5 +40,7 @@ public:
 	bool IsAttackable() const;
 	int Attack();
 
+	virtual int Score() = 0;
+
 	static Threat* Generate();
 };

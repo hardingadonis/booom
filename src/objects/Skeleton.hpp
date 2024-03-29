@@ -9,4 +9,6 @@ private:
 
 public:
 	Skeleton();
+
+	int Score() override;
 };
