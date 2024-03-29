@@ -5,7 +5,8 @@
 Player::Player() :
 	AnimatedObject(6, 0.1f),
 	m_speed(150),
-	m_isShotable(true)
+	m_isShotable(true),
+	m_elapsedTime(0.f)
 {
 	this->m_texture = Resource::TX_PLAYER;
 	this->m_rectSrc->w = 72;
@@ -13,6 +14,9 @@ Player::Player() :
 
 	this->m_rectDst->w = 72;
 	this->m_rectDst->h = 72;
+
+	this->m_rectCollision->w = this->m_rectCollision->h = 50;
+	this->m_rectCollision->x = this->m_rectCollision->y = 11;
 
 	this->SetOrigin({ 100, 100 });
 

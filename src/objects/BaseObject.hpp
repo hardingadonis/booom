@@ -9,6 +9,7 @@ protected:
 	SDL_Texture*	m_texture;
 	SDL_Rect*		m_rectSrc;
 	SDL_Rect*		m_rectDst;
+	SDL_Rect*		m_rectCollision;
 	SDL_Point*		m_origin;
 	float			m_angle;
 	bool			m_flipH;
@@ -31,4 +32,6 @@ public:
 	void SetFlipH(bool flip);
 
 	void Move(Vector2f vector);
+
+	SDL_Rect GetRectCollision() const;
 };

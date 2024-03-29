@@ -7,6 +7,7 @@ BaseObject::BaseObject() :
 {
 	this->m_rectSrc = new SDL_Rect();
 	this->m_rectDst = new SDL_Rect();
+	this->m_rectCollision = new SDL_Rect();
 	this->m_origin = new SDL_Point();
 }
 
@@ -29,6 +30,11 @@ void BaseObject::Render(SDL_Renderer* renderer)
 			center,
 			flip
 		);
+
+#ifdef _DEBUG
+		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+		SDL_RenderDrawRect(renderer, this->m_rectCollision);
+#endif
 	}
 }
 
@@ -48,6 +54,9 @@ void BaseObject::SetOrigin(SDL_Point origin)
 
 	this->m_rectDst->x += xOffset;
 	this->m_rectDst->y += yOffset;
+
+	this->m_rectCollision->x += xOffset;
+	this->m_rectCollision->y += yOffset;
 
 	this->m_origin->x = origin.x;
 	this->m_origin->y = origin.y;
@@ -85,4 +94,9 @@ void BaseObject::Move(Vector2f vector)
 	origin.y += (int) vector.y;
 	
 	this->SetOrigin(origin);
+}
+
+SDL_Rect BaseObject::GetRectCollision() const
+{
+	return *this->m_rectCollision;
 }
