@@ -24,6 +24,9 @@ protected:
 	SDL_Rect m_totalHP;
 	SDL_Rect m_currentHP;
 
+	float m_elapsedTime;
+	bool m_isAttackable;
+
 public:
 	Threat(SDL_Texture*, SDL_Texture*, SDL_Texture*, int, int, int);
 
@@ -33,6 +36,9 @@ public:
 
 	void Update(float) override;
 	void Render(SDL_Renderer*) override;
+
+	bool IsAttackable() const;
+	int Attack();
 
 	static Threat* Generate();
 };

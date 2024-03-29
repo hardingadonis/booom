@@ -36,6 +36,11 @@ void PlayScene::Update(float delta)
 	for (auto threat : this->m_threats)
 	{
 		threat->Update(delta);
+
+		if (threat->IsAttackable())
+		{
+			this->m_tower->SetCurrentHP(this->m_tower->GetCurrentHP() - threat->Attack());
+		}
 	}
 
 	for (auto bullet : this->m_bullets)

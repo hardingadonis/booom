@@ -2,7 +2,7 @@
 #include <Resource.hpp>
 
 Bullet::Bullet(float angle, SDL_Point origin) :
-	Damage(40),
+	Damage(25),
 	m_speed(800)
 {
 	this->m_texture = Resource::TX_PLAYER_BULLET;

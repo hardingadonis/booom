@@ -16,7 +16,9 @@ Threat::Threat(
 	m_walkTex(walkTex),
 	m_speed(speed),
 	m_totalHP({0, 0, 30, 3}),
-	m_currentHP({ 0, 0, 30, 3 })
+	m_currentHP({ 0, 0, 30, 3 }),
+	m_elapsedTime(0.f),
+	m_isAttackable(false)
 {
 	this->SetCurrentFrame(1);
 	this->SetMaxFrame(8);
@@ -103,6 +105,16 @@ void Threat::Update(float delta)
 		}
 	}
 
+	if (this->m_state == ThreatState::ATTACK)
+	{
+		this->m_elapsedTime += delta;
+
+		if (this->m_elapsedTime > 1.2f && !this->m_isAttackable)
+		{
+			this->m_isAttackable = true;
+		}
+	}
+
 	if (this->GetCurrentHP() <= 0 && this->m_state != ThreatState::DEATH)
 	{
 		this->SetState(ThreatState::DEATH);
@@ -126,6 +138,19 @@ void Threat::Render(SDL_Renderer* renderer)
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &this->m_currentHP);
 	}
+}
+
+bool Threat::IsAttackable() const
+{
+	return this->m_isAttackable;
+}
+
+int Threat::Attack()
+{
+	this->m_isAttackable = false;
+	this->m_elapsedTime = 0.f;
+
+	return this->GetDamage();
 }
 
 Threat* Threat::Generate()

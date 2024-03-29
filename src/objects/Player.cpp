@@ -4,7 +4,7 @@
 
 Player::Player() :
 	AnimatedObject(6, 0.1f),
-	m_speed(150),
+	m_speed(200),
 	m_isShotable(true),
 	m_elapsedTime(0.f)
 {
