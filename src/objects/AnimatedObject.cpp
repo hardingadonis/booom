@@ -52,3 +52,8 @@ void AnimatedObject::SetTimePerFrame(float timePerFrame)
 {
 	this->m_timePerFrame = timePerFrame;
 }
+
+int AnimatedObject::GetCurrentFrame() const
+{
+	return this->m_currentFrame;
+}

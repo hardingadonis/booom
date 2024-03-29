@@ -31,6 +31,11 @@ void Tower::Update(float delta)
 	this->UpdateAnimation(delta);
 
 	this->m_currentHP.w = (int)((float)this->GetCurrentHP() / (float)this->GetMaxHP() * this->m_totalHP.w);
+
+	if (this->GetCurrentHP() <= 0)
+	{
+		this->m_isAlive = false;
+	}
 }
 
 void Tower::Render(SDL_Renderer* renderer)

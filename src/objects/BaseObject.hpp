@@ -13,6 +13,7 @@ protected:
 	SDL_Point*		m_origin;
 	float			m_angle;
 	bool			m_flipH;
+	bool			m_isAlive;
 
 public:
 	BaseObject();
@@ -34,4 +35,9 @@ public:
 	void Move(Vector2f vector);
 
 	SDL_Rect GetRectCollision() const;
+
+	void SetIsAlive(bool);
+	bool IsAlive() const;
+
+	bool IsCollision(const BaseObject*) const;
 };

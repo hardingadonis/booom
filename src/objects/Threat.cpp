@@ -103,9 +103,14 @@ void Threat::Update(float delta)
 		}
 	}
 
-	if (this->GetCurrentHP() <= 0)
+	if (this->GetCurrentHP() <= 0 && this->m_state != ThreatState::DEATH)
 	{
 		this->SetState(ThreatState::DEATH);
+	}
+
+	if (this->m_state == ThreatState::DEATH && this->GetCurrentFrame() == 4)
+	{
+		this->m_isAlive = false;
 	}
 }
 

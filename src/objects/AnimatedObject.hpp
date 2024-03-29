@@ -20,4 +20,6 @@ public:
 	void SetMaxFrame(int);
 	void SetCurrentFrame(int);
 	void SetTimePerFrame(float);
+
+	int GetCurrentFrame() const;
 };
