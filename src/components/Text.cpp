@@ -19,6 +19,6 @@ void Text::RenderText(SDL_Renderer* renderer, const std::string& text)
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surf);
 	SDL_FreeSurface(surf);
 	SDL_QueryTexture(texture, nullptr, nullptr, &this->m_position.w, &this->m_position.h);
-
+	
 	SDL_RenderCopy(renderer, texture, nullptr, &this->m_position);
 }

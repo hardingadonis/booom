@@ -1,18 +1,17 @@
 #include <Config.hpp>
 #include <scenes/PlayScene.hpp>
+#include <scenes/GameOverScene.hpp>
+#include <Game.hpp>
 #include <Resource.hpp>
 
 PlayScene::PlayScene() :
 	m_elapsedTime(0.f),
-	m_score(0),
-	m_killedThreat(0)
+	m_score(0)
 {
 	this->m_tower = new Tower();
 	this->m_player = new Player();
 	this->m_scoreText = new Text(Resource::FONT_24);
 	this->m_scoreText->SetPosition({ 50, 5 });
-	this->m_theatsText = new Text(Resource::FONT_24);
-	this->m_theatsText->SetPosition({ 1000, 5 });
 
 	Mix_PlayMusic(Resource::SFX_BACKGROUND, -1);
 }
@@ -77,7 +76,6 @@ void PlayScene::Update(float delta)
 			this->m_threats.erase(this->m_threats.begin() + i);
 
 			this->m_score += this->m_threats[i]->Score();
-			this->m_killedThreat++;
 		}
 		else
 		{
@@ -99,6 +97,7 @@ void PlayScene::Update(float delta)
 
 	if (!this->m_tower->IsAlive())
 	{
+		Game::GetInstance()->SetScene(new GameOverScene(this->m_score));
 	}
 }
 
@@ -125,5 +124,4 @@ void PlayScene::Render(SDL_Renderer* renderer)
 	}
 
 	this->m_scoreText->RenderText(renderer, "Score: " + std::to_string(this->m_score));
-	this->m_theatsText->RenderText(renderer, "Threats: " + std::to_string(this->m_killedThreat));
 }
