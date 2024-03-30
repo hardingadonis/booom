@@ -1,6 +1,6 @@
 #include <Game.hpp>
 #include <Resource.hpp>
-#include <scenes/PlayScene.hpp>
+#include <scenes/MenuScene.hpp>
 
 static Game* g_game = nullptr;
 
@@ -61,7 +61,7 @@ void Game::Initialize()
 
 	Resource::LoadAllData(this->m_renderer);
 
-	this->SetScene(new PlayScene());
+	this->SetScene(new MenuScene());
 }
 
 void Game::Run()
@@ -99,6 +99,11 @@ void Game::Run()
 
 		SDL_RenderPresent(this->m_renderer);
 	}
+}
+
+void Game::Quit()
+{
+	this->m_isRunning = false;
 }
 
 void Game::SetScene(BaseScene* scene)

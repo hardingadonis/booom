@@ -1,4 +1,6 @@
 #include <scenes/GameOverScene.hpp>
+#include <scenes/MenuScene.hpp>
+#include <Game.hpp>
 #include <Resource.hpp>
 
 std::string toFiveDigitString(int num)
@@ -26,9 +28,9 @@ void GameOverScene::HandleEvent(SDL_Event e)
 {
 	if (e.type == SDL_MOUSEBUTTONDOWN)
 	{
-		if (e.button.button == SDL_BUTTON_LEFT && this->m_elapsedTime > 5.f)
+		if (e.button.button == SDL_BUTTON_LEFT && this->m_elapsedTime > 0.5f)
 		{
-			std::cout << "haha\n";
+			Game::GetInstance()->SetScene(new MenuScene());
 		}
 	}
 }

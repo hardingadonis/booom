@@ -16,7 +16,7 @@
 // Define constants
 #define WINDOW_WIDTH					1200
 #define WINDOW_HEIGHT					680
-#define WINDOW_TITLE					"Dino Gun"
+#define WINDOW_TITLE					"DINO GUN"
 
 // Define resources path
 #define RES_FONT						"res/fonts/monogram-extended.ttf"

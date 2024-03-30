@@ -17,6 +17,7 @@ public:
 	~Game();
 
 	void Run();
+	void Quit();
 
 	void SetScene(BaseScene* scene);
 

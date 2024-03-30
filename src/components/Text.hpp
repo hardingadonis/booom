@@ -12,7 +12,10 @@ private:
 public:
 	Text(TTF_Font*);
 
+	void SetColor(SDL_Color);
 	void SetPosition(SDL_Point);
+
+	bool IsSelected(SDL_Point) const;
 
 	void RenderText(SDL_Renderer*, const std::string&);
 };
