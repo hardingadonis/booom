@@ -1,5 +1,6 @@
 #include <scenes/MenuScene.hpp>
 #include <scenes/PlayScene.hpp>
+#include <scenes/HighScoreScene.hpp>
 #include <Resource.hpp>
 #include <Game.hpp>
 
@@ -32,6 +33,11 @@ void MenuScene::HandleEvent(SDL_Event e)
 		{
 			Game::GetInstance()->SetScene(new PlayScene());
 ;		}
+
+		if (this->m_scoreText->IsSelected(this->m_mousePosition))
+		{
+			Game::GetInstance()->SetScene(new HighScoreScene());
+		}
 
 		if (this->m_exitText->IsSelected(this->m_mousePosition))
 		{

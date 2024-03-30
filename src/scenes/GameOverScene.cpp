@@ -2,13 +2,7 @@
 #include <scenes/MenuScene.hpp>
 #include <Game.hpp>
 #include <Resource.hpp>
-
-std::string toFiveDigitString(int num)
-{
-	std::stringstream ss;
-	ss << std::setw(5) << std::setfill('0') << num;
-	return ss.str();
-}
+#include <misc/Utils.hpp>
 
 GameOverScene::GameOverScene(int score) :
 	m_elapsedTime(0.f)
