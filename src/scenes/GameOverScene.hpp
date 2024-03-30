@@ -21,4 +21,6 @@ public:
 	void HandleEvent(SDL_Event) override;
 	void Update(float) override;
 	void Render(SDL_Renderer*) override;
+
+	void SaveScore(int);
 };

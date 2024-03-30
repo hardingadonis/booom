@@ -5,11 +5,13 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <fstream>
 
 // Define constants
 #define WINDOW_WIDTH					1200
