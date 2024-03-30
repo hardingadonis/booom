@@ -1,6 +1,8 @@
 #include <Resource.hpp>
 
 TTF_Font* Resource::FONT_24;
+TTF_Font* Resource::FONT_48;
+TTF_Font* Resource::FONT_96;
 
 Mix_Chunk* Resource::SFX_SHOT;
 Mix_Music* Resource::SFX_BACKGROUND;
@@ -65,6 +67,8 @@ Mix_Chunk* Resource::LoadSFXFromFile(const std::string& path)
 void Resource::LoadAllData(SDL_Renderer* renderer)
 {
 	FONT_24					= LoadFontFromFile(RES_FONT, 24);
+	FONT_48					= LoadFontFromFile(RES_FONT, 48);
+	FONT_96					= LoadFontFromFile(RES_FONT, 96);
 
 	SFX_SHOT				= LoadSFXFromFile(RES_SFX_SHOT);
 	SFX_BACKGROUND			= LoadMusicFromFile(RES_SFX_BACKGROUND);

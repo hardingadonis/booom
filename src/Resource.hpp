@@ -6,6 +6,8 @@ class Resource
 {
 public:
 	static TTF_Font*	FONT_24;
+	static TTF_Font*	FONT_48;
+	static TTF_Font*	FONT_96;
 
 	static Mix_Chunk*	SFX_SHOT;
 	static Mix_Music*	SFX_BACKGROUND;
