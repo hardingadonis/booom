@@ -28,28 +28,36 @@ SDL_Texture* Resource::LoadTextureFromFile(const std::string& path, SDL_Renderer
 {
 	SDL_Texture* texture = IMG_LoadTexture(renderer, path.c_str());
 
+#ifdef _DEBUG
 	std::cout << "Loaded texture from " << path << std::endl;
+#endif
 
 	return texture;
 }
 
 TTF_Font* Resource::LoadFontFromFile(const std::string& path, int size)
 {
+#ifdef _DEBUG
 	std::cout << "Loaded font from " << path << std::endl;
+#endif
 
 	return TTF_OpenFont(path.c_str(), size);
 }
 
 Mix_Music* Resource::LoadMusicFromFile(const std::string& path)
 {
+#ifdef _DEBUG
 	std::cout << "Loaded music from " << path << std::endl;
+#endif
 
 	return Mix_LoadMUS(path.c_str());
 }
 
 Mix_Chunk* Resource::LoadSFXFromFile(const std::string& path)
 {
+#ifdef _DEBUG
 	std::cout << "Loaded SFX from " << path << std::endl;
+#endif
 
 	return Mix_LoadWAV(path.c_str());
 }
