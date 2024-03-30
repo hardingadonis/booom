@@ -31,6 +31,11 @@ void Game::Initialize()
 		exit(EXIT_FAILURE);
 	}
 
+	if ((Mix_Init(MIX_INIT_WAVPACK | MIX_INIT_MP3) < 0) || (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0))
+	{
+		exit(EXIT_FAILURE);
+	}
+
 	this->m_window = SDL_CreateWindow(
 		WINDOW_TITLE,
 		SDL_WINDOWPOS_UNDEFINED,
@@ -107,6 +112,7 @@ void Game::Terminate()
 {
 	IMG_Quit();
 	TTF_Quit();
+	Mix_Quit();
 
 	SDL_DestroyRenderer(this->m_renderer);
 	this->m_renderer = nullptr;

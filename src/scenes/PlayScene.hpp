@@ -17,6 +17,7 @@ private:
 	std::vector<Bullet*>	m_bullets;
 	float					m_elapsedTime;
 	int						m_score;
+	int						m_killedThreat;
 	Text*					m_scoreText;
 	Text*					m_theatsText;
 

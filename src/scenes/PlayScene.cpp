@@ -4,7 +4,8 @@
 
 PlayScene::PlayScene() :
 	m_elapsedTime(0.f),
-	m_score(0)
+	m_score(0),
+	m_killedThreat(0)
 {
 	this->m_tower = new Tower();
 	this->m_player = new Player();
@@ -12,6 +13,8 @@ PlayScene::PlayScene() :
 	this->m_scoreText->SetPosition({ 50, 5 });
 	this->m_theatsText = new Text(Resource::FONT_24);
 	this->m_theatsText->SetPosition({ 1000, 5 });
+
+	Mix_PlayMusic(Resource::SFX_BACKGROUND, -1);
 }
 
 void PlayScene::HandleEvent(SDL_Event e)
@@ -20,6 +23,7 @@ void PlayScene::HandleEvent(SDL_Event e)
 	{
 		if (e.button.button == SDL_BUTTON_LEFT && this->m_player->IsShotable())
 		{
+			Mix_PlayChannel(-1, Resource::SFX_SHOT, 0);
 			this->m_bullets.push_back(this->m_player->Shot());
 		}
 	}
@@ -29,7 +33,7 @@ void PlayScene::Update(float delta)
 {
 	this->m_elapsedTime += delta;
 
-	if (this->m_elapsedTime > 1.2f)
+	if (this->m_elapsedTime > 1.f)
 	{
 		this->m_threats.push_back(Threat::Generate());
 
@@ -73,6 +77,7 @@ void PlayScene::Update(float delta)
 			this->m_threats.erase(this->m_threats.begin() + i);
 
 			this->m_score += this->m_threats[i]->Score();
+			this->m_killedThreat++;
 		}
 		else
 		{
@@ -91,19 +96,14 @@ void PlayScene::Update(float delta)
 			i++;
 		}
 	}
+
+	if (!this->m_tower->IsAlive())
+	{
+	}
 }
 
 void PlayScene::Render(SDL_Renderer* renderer)
 {
-	for (auto threat : this->m_threats)
-	{
-		threat->Render(renderer);
-	}
-	for (auto bullet : this->m_bullets)
-	{
-		bullet->Render(renderer);
-	}
-
 	if (this->m_tower->GetOrigin().y + 100 < this->m_player->GetOrigin().y)
 	{
 		this->m_tower->Render(renderer);
@@ -115,6 +115,15 @@ void PlayScene::Render(SDL_Renderer* renderer)
 		this->m_tower->Render(renderer);
 	}
 
+	for (auto threat : this->m_threats)
+	{
+		threat->Render(renderer);
+	}
+	for (auto bullet : this->m_bullets)
+	{
+		bullet->Render(renderer);
+	}
+
 	this->m_scoreText->RenderText(renderer, "Score: " + std::to_string(this->m_score));
-	this->m_theatsText->RenderText(renderer, "Threats: " + std::to_string(this->m_threats.size()));
+	this->m_theatsText->RenderText(renderer, "Threats: " + std::to_string(this->m_killedThreat));
 }

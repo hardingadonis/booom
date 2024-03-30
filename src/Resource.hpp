@@ -7,6 +7,9 @@ class Resource
 public:
 	static TTF_Font*	FONT_24;
 
+	static Mix_Chunk*	SFX_SHOT;
+	static Mix_Music*	SFX_BACKGROUND;
+
 	static SDL_Texture* TX_PLAYER;
 	static SDL_Texture* TX_PLAYER_GUN;
 	static SDL_Texture* TX_PLAYER_BULLET;
@@ -30,6 +33,10 @@ public:
 	static SDL_Texture* LoadTextureFromFile(const std::string& path, SDL_Renderer* renderer);
 
 	static TTF_Font* LoadFontFromFile(const std::string& path, int size);
+
+	static Mix_Music* LoadMusicFromFile(const std::string& path);
+
+	static Mix_Chunk* LoadSFXFromFile(const std::string& path);
 
 	static void LoadAllData(SDL_Renderer* renderer);
 };
