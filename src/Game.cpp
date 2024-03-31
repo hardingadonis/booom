@@ -31,7 +31,7 @@ void Game::Initialize()
 		exit(EXIT_FAILURE);
 	}
 
-	if ((Mix_Init(MIX_INIT_WAVPACK | MIX_INIT_MP3) < 0) || (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0))
+	if ((Mix_Init(MIX_INIT_MP3) < 0) || (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0))
 	{
 		exit(EXIT_FAILURE);
 	}
