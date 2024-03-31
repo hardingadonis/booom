@@ -1,5 +1,11 @@
 # Dino Gun
 
+[![Build Dino Gun](https://github.com/hardingadonis/dino-gun/actions/workflows/build.yml/badge.svg)](https://github.com/hardingadonis/dino-gun/actions/workflows/build.yml)
+![GitHub contributors](https://img.shields.io/github/contributors/hardingadonis/dino-gun)
+![GitHub top language](https://img.shields.io/github/languages/top/hardingadonis/dino-gun)
+![GitHub repo size](https://img.shields.io/github/repo-size/hardingadonis/dino-gun)
+![GitHub License](https://img.shields.io/github/license/hardingadonis/dino-gun)
+
 > A simple game made with C++ & SDL2
 
 ## Requirements
@@ -44,3 +50,13 @@ cmake --install .
 ```bash
 ./dino-gun
 ```
+
+## Contributors:
+
+<a href="https://github.com/hardingadonis/dino-gun/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=hardingadonis/dino-gun" />
+</a>
+
+## Licenses:
+
+- [Dino Gun](https://github.com/hardingadonis/dino-gun) is under the [MIT license](https://github.com/hardingadonis/dino-gun/blob/main/LICENSE).
