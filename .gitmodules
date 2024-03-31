@@ -1,0 +1,3 @@
+[submodule "cmake/SDL2"]
+	path = cmake/SDL2
+	url = https://github.com/hardingadonis/sdl2-cmake-modules.git
