@@ -67,6 +67,8 @@ obj/
 # Visual Studio
 .vs/
 out/
+bin/
+build/
 x64/
 x86/
 dino-gun/
