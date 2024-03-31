@@ -1,0 +1,26 @@
+name: Build Dino Gun
+
+on:
+	push:
+		branches:
+			- main
+
+jobs:
+	build:
+		runs-on: ubuntu-latest
+
+		steps:
+		- uses: actions/checkout@v4
+			with:
+				submodules: recursive
+		
+		- name: Install dependencies
+			run: sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev ninja-build
+		
+		- name: Configure, build and install
+			run: |
+				mkdir build
+				cd build
+				cmake .. -DCMAKE_BUILD_TYPE=MinSizeRel -DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc -G Ninja
+				cmake --build .
+				cmake --install .
