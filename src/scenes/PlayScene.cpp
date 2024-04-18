@@ -6,7 +6,9 @@
 
 PlayScene::PlayScene() :
 	m_elapsedTime(0.f),
-	m_score(0)
+	m_score(0),
+	m_spawnTime(1.2f),
+	m_level(0)
 {
 	this->m_tower = new Tower();
 	this->m_player = new Player();
@@ -32,11 +34,11 @@ void PlayScene::Update(float delta)
 {
 	this->m_elapsedTime += delta;
 
-	if (this->m_elapsedTime > 1.f)
+	if (this->m_elapsedTime > this->m_spawnTime)
 	{
 		this->m_threats.push_back(Threat::Generate());
 
-		this->m_elapsedTime = 0.f;
+		this->m_elapsedTime -= this->m_spawnTime;
 	}
 
 	this->m_tower->Update(delta);
@@ -99,6 +101,8 @@ void PlayScene::Update(float delta)
 	{
 		Game::GetInstance()->SetScene(new GameOverScene(this->m_score));
 	}
+
+	this->UpdateLevel();
 }
 
 void PlayScene::Render(SDL_Renderer* renderer)
@@ -124,4 +128,15 @@ void PlayScene::Render(SDL_Renderer* renderer)
 	}
 
 	this->m_scoreText->RenderText(renderer, "Score: " + std::to_string(this->m_score));
+}
+
+void PlayScene::UpdateLevel()
+{
+	int t = this->m_score / 100;
+
+	if (t > this->m_level && this->m_level < 10)
+	{
+		this->m_level = t;
+		this->m_spawnTime -= t * 0.1f;
+	}
 }

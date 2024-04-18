@@ -18,6 +18,8 @@ private:
 	float					m_elapsedTime;
 	int						m_score;
 	Text*					m_scoreText;
+	float					m_spawnTime;
+	int						m_level;
 
 public:
 	PlayScene();
@@ -26,4 +28,6 @@ public:
 	void HandleEvent(SDL_Event) override;
 	void Update(float) override;
 	void Render(SDL_Renderer*) override;
+
+	void UpdateLevel();
 };
